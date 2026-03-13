@@ -1,12 +1,13 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { createPageUrl } from '@/lib/utils';
-
+ 
 const services = [
   {
     id: 'kitchen',
@@ -57,11 +58,11 @@ const services = [
     ],
   },
 ];
-
-export default function Services() {
+ 
+function ServicesInner() {
   const searchParams = useSearchParams();
   const activeType = searchParams.get('type');
-
+ 
   return (
     <div className="min-h-screen bg-stone-50 pt-24">
       <section className="py-16 bg-stone-900">
@@ -77,7 +78,7 @@ export default function Services() {
           </motion.div>
         </div>
       </section>
-
+ 
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
           {services.map((service, index) => (
@@ -121,5 +122,13 @@ export default function Services() {
         </div>
       </section>
     </div>
+  );
+}
+ 
+export default function Services() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-stone-50 pt-24" />}>
+      <ServicesInner />
+    </Suspense>
   );
 }

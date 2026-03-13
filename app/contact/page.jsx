@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -20,7 +20,7 @@ const serviceOptions = [
   { value: 'other', label: 'Άλλο' },
 ];
 
-export default function Contact() {
+function ContactInner() {
   const searchParams = useSearchParams();
   const preselectedService = searchParams.get('service') || '';
 
@@ -149,5 +149,13 @@ export default function Contact() {
           width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Χάρτης" />
       </section>
     </div>
+  );
+}
+
+export default function Contact() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-stone-50 pt-24" />}>
+      <ContactInner />
+    </Suspense>
   );
 }

@@ -10,7 +10,6 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
-// import { base44 } from '@/api/base44Client'; // Uncomment when base44 client is configured
 
 const serviceOptions = [
   { value: 'kitchen', label: 'Κουζίνα' },
@@ -41,10 +40,18 @@ function ContactInner() {
     }
     setIsSubmitting(true);
     try {
-      // await base44.entities.ContactRequest.create(formData);
-      await new Promise(r => setTimeout(r, 1000)); // placeholder
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) throw new Error();
+
       setIsSubmitted(true);
       toast.success('Το μήνυμά σας στάλθηκε επιτυχώς!');
+    } catch {
+      toast.error('Κάτι πήγε στραβά. Παρακαλώ δοκιμάστε ξανά.');
     } finally {
       setIsSubmitting(false);
     }

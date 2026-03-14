@@ -1,8 +1,8 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Providers from '@/providers/Providers';
-import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
 import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] });

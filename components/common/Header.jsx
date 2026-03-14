@@ -40,7 +40,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link href={createPageUrl('Home')} className="flex items-center gap-2">
           <div>
-            <div className={`text-xl font-bold leading-tight transition-colors ${isScrolled ? 'text-stone-900' : 'text-stone-900'}`}>Antimisaris</div>
+            <div className={`text-xl font-bold leading-tight transition-colors ${isScrolled ? 'text-stone-900' : 'text-white'}`}>Antimisaris</div>
             <div className="text-xs font-medium tracking-widest uppercase text-amber-500">Woodcraft</div>
           </div>
         </Link>

@@ -51,8 +51,8 @@ function ContactInner() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 pt-24">
-      <section className="py-16 bg-stone-900">
+    <div className="min-h-screen bg-stone-50">
+      <section className="pt-40 pb-32 bg-stone-900">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="text-amber-500 text-sm font-semibold tracking-widest uppercase">Επικοινωνία</span>

@@ -1,13 +1,11 @@
-'use client';
-
 import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { createPageUrl } from '@/lib/utils';
- 
+import { ActiveServiceHighlight } from '@/components/services/ActiveServiceHilight';
+import { AnimatedHero, AnimatedServiceCard } from '@/components/services/AnimatedHero';
+
 const services = [
   {
     id: 'kitchen',
@@ -58,16 +56,13 @@ const services = [
     ],
   },
 ];
- 
-function ServicesInner() {
-  const searchParams = useSearchParams();
-  const activeType = searchParams.get('type');
- 
+
+export default function Services() {
   return (
-    <div className="min-h-screen bg-stone-50 pt-24">
-      <section className="py-16 bg-stone-900">
+    <div className="min-h-screen bg-stone-200">
+      <section className="pt-40 pb-16 bg-stone-900">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <AnimatedHero>
             <span className="text-amber-500 text-sm font-semibold tracking-widest uppercase">Οι Υπηρεσίες μας</span>
             <h1 className="text-4xl md:text-6xl font-light text-white mt-4">
               Εξειδικευμένες <span className="font-semibold">Κατασκευές</span>
@@ -75,22 +70,20 @@ function ServicesInner() {
             <p className="text-stone-400 text-lg mt-6 max-w-2xl mx-auto">
               Με 35 χρόνια εμπειρίας, προσφέρουμε ολοκληρωμένες λύσεις για κάθε χώρο.
             </p>
-          </motion.div>
+          </AnimatedHero>
         </div>
       </section>
- 
+
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
+
+          <Suspense fallback={null}>
+            <ActiveServiceHighlight />
+          </Suspense>
+
           {services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              id={service.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className={`mb-24 last:mb-0 ${activeType === service.id ? 'scroll-mt-32' : ''}`}
-            >
-              <div className={`grid lg:grid-cols-2 gap-12 items-center`}>
+            <AnimatedServiceCard key={service.id} id={service.id}>
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
                   <div className="relative">
                     <img src={service.image} alt={service.title} className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-2xl" />
@@ -117,18 +110,10 @@ function ServicesInner() {
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </AnimatedServiceCard>
           ))}
         </div>
       </section>
     </div>
-  );
-}
- 
-export default function Services() {
-  return (
-    <Suspense fallback={<div className="min-h-screen bg-stone-50 pt-24" />}>
-      <ServicesInner />
-    </Suspense>
   );
 }

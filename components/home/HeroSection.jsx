@@ -46,7 +46,7 @@ export default function HeroSection() {
               </Button>
             </Link>
             <a href="tel:+306955508228">
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg rounded-full">
+              <Button size="lg" variant="outline" className="border-white/30 text-black hover:bg-white/10 px-8 py-6 text-lg rounded-full hover:text-white">
                 <Phone className="mr-2 w-5 h-5" />6955 508 228
               </Button>
             </a>

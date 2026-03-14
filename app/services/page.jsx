@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { createPageUrl } from '@/lib/utils';
 import { ActiveServiceHighlight } from '@/components/services/ActiveServiceHilight';
 import { AnimatedHero, AnimatedServiceCard } from '@/components/services/AnimatedHero';
-
+//
 const services = [
   {
     id: 'kitchen',
